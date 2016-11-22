@@ -38,6 +38,7 @@ code_dir_name = cf.get('dir', 'code_dir_name')
 apk_dir_name = cf.get('dir', 'apk_dir_name')
 code_zip_name = cf.get('dir', 'code_zip_name') + ".zip"
 adb_dir = cf.get('dir', 'adb_dir')
+gradle_dir = cf.get('dir', 'gradle_dir')
 
 file_dir = base_file_dir + '/' + dir_name
 code_dir = file_dir + '/' + code_dir_name
@@ -106,18 +107,18 @@ createLocalPropertiesFile(code_dir, 'local.properties',  sdk_dir)
 # 3. 打包
 
 os.chdir(code_dir)
-os.system('chmod 777 gradlew')
+# os.system('chmod 777 gradlew')
 
-print('gradlew clean')
-os.system('./gradlew clean')
-print('gradlew assemble, generate apk')
+print('gradle clean')
+os.system(gradle_dir + ' clean')
+print('gradle assemble, generate apk')
 
 if assembleRelease:
     print('assembleRelease apk')
-    os.system('./gradlew assembleRelease')
+    os.system(gradle_dir + ' assembleRelease')
 else:
     print('assembleDebug apk')
-    os.system('./gradlew assembleDebug')
+    os.system(gradle_dir + ' assembleDebug')
 
 print('Generate apk finish!')
 
