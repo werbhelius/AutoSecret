@@ -63,18 +63,18 @@ def cleanFile(targetDir):
         if os.path.isfile(targetFile):
             os.remove(targetFile)
 
-# cleanFile(code_dir)
-#
-# print('下载地址: ' + git_download_url)
-# print('下载中...')
-# response = requests.get(git_download_url)
-# with open(code_zip_name, "wb") as code:
-#     code.write(response.content)
-# print(response.status_code)
-# if response.status_code == 200:
-#     print('下载完成！')
-# else:
-#     print('下载失败！')
+cleanFile(code_dir)
+
+print('下载地址: ' + git_download_url)
+print('下载中...')
+response = requests.get(git_download_url)
+with open(code_zip_name, "wb") as code:
+    code.write(response.content)
+print(response.status_code)
+if response.status_code == 200:
+    print('下载完成！')
+else:
+    print('下载失败！')
 
 # 解压zip包
 z = zipfile.ZipFile(code_zip_name, 'r')
